@@ -10,12 +10,12 @@ class HGModel(BaseModel):
     def name(self):
         return 'HGModel'
 
-    def __init__(self, opt):
-        BaseModel.initialize(self, opt)
+    def __init__(self):
+        BaseModel.initialize(self)
 
         print("===========================================LOADING Hourglass NETWORK====================================================")
         model = pytorch_DIW_scratch.pytorch_DIW_scratch
-        model= torch.nn.parallel.DataParallel(model, device_ids = [0,1])
+        model= torch.nn.parallel.DataParallel(model, device_ids = [0])
         model_parameters = self.load_network(model, 'G', 'best_generalization')
         model.load_state_dict(model_parameters)
         self.netG = model.cuda()
