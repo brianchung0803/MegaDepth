@@ -10,10 +10,10 @@ from skimage import io
 from skimage.transform import resize
 
 class Depth():
-  def __init__(self):
+  def __init__(self,height,width):
     self.model = create_model()
-    self.input_height = 384
-    self.input_width  = 512
+    self.input_height = height
+    self.input_width  = width
 
 
   def depth_estimate(self,image):
